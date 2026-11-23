@@ -309,7 +309,7 @@ class NuvolaSchoolCard extends HTMLElement {
   _tileHTML(m, t, big) {
     return `<div class="tile ${t.status} ${big ? "big" : ""}" data-entity="${nvEsc(m.ents[t.k] || "")}">
       <ha-icon icon="${t.icon}"></ha-icon>
-      <div class="tv">${nvEsc(t.value)}</div>
+      <div class="tv${t.txt ? " txt" : ""}">${nvEsc(t.value)}</div>
       <div class="tl">${nvEsc(t.label)}</div>
       ${t.sub ? `<div class="ts">${nvEsc(t.sub)}</div>` : ""}
     </div>`;
@@ -321,7 +321,7 @@ class NuvolaSchoolCard extends HTMLElement {
     const lv = m.lastVote !== null ? (nvNum(m.lastVote) !== null ? nvFmt(nvNum(m.lastVote), 2) : String(m.lastVote)) : "—";
     const lvSub = m.lastVote !== null ? [nvCap(m.lastVoteSubject || ""), nvDate(m.lastVoteDate, { day: "numeric", month: "short" })].filter(Boolean).join(" · ") : "nessun voto";
     const big = [
-      { k: "last_vote", label: "Ultimo voto", icon: "mdi:clipboard-text", value: lv, status: "", sub: lvSub },
+      { k: "last_vote", label: "Ultimo voto", icon: "mdi:clipboard-text", value: lv, status: "", sub: lvSub, txt: m.lastVote !== null && nvNum(m.lastVote) === null },
       { k: "hw_today", label: "Compiti oggi", icon: "mdi:book-open-page-variant", value: nvFmt(m.hwToday, 0), status: m.hwToday > 0 ? "info" : "", sub: m.hwNext !== null ? `${m.hwNext} nei prossimi giorni` : "" },
       { k: "payments", label: "Da pagare", icon: m.dueCount > 0 ? "mdi:cash-clock" : "mdi:cash-check", value: nvFmt(m.dueCount, 0), status: m.dueCount > 0 ? "bad" : m.dueCount === 0 ? "ok" : "", sub: m.dueCount > 0 ? `€ ${nvFmt(m.dueTotal, 2)}` : "tutto pagato" },
     ];
@@ -585,6 +585,7 @@ ha-card{height:100%;box-sizing:border-box;overflow:hidden;font-size:calc(var(--u
 .tile.ok{--tc:var(--ok)}.tile.warn{--tc:var(--warn)}.tile.bad{--tc:var(--bad)}.tile.info{--tc:var(--info)}
 .tv{font-size:calc(var(--u)*2.5);font-weight:800;line-height:1.05;color:var(--t1);font-variant-numeric:tabular-nums;text-shadow:0 0 calc(var(--u)*.8) color-mix(in srgb,var(--tc) 50%,transparent)}
 .tile.big .tv{font-size:calc(var(--u)*3.1)}
+.tile.big .tv.txt{font-size:calc(var(--u)*1.45);line-height:1.15;padding-right:calc(var(--u)*2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
 .tile.bad .tv{color:var(--bad)}.tile.warn .tv{color:var(--warn)}.tile.ok .tv{color:var(--ok)}
 .tl{font-size:calc(var(--u)*.95);font-weight:700;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ts{font-size:calc(var(--u)*.85);color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
