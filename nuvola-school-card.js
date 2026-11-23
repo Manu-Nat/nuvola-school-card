@@ -585,7 +585,7 @@ ha-card{height:100%;box-sizing:border-box;overflow:hidden;font-size:calc(var(--u
 .tile.ok{--tc:var(--ok)}.tile.warn{--tc:var(--warn)}.tile.bad{--tc:var(--bad)}.tile.info{--tc:var(--info)}
 .tv{font-size:calc(var(--u)*2.5);font-weight:800;line-height:1.05;color:var(--t1);font-variant-numeric:tabular-nums;text-shadow:0 0 calc(var(--u)*.8) color-mix(in srgb,var(--tc) 50%,transparent)}
 .tile.big .tv{font-size:calc(var(--u)*3.1)}
-.tile.big .tv.txt{font-size:calc(var(--u)*1.45);line-height:1.15;padding-right:calc(var(--u)*2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
+.tile.big .tv.txt{font-size:calc(var(--u)*1.05);line-height:1.15;padding-right:calc(var(--u)*2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
 .tile.bad .tv{color:var(--bad)}.tile.warn .tv{color:var(--warn)}.tile.ok .tv{color:var(--ok)}
 .tl{font-size:calc(var(--u)*.95);font-weight:700;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ts{font-size:calc(var(--u)*.85);color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
